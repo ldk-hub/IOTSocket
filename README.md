@@ -8,15 +8,21 @@ Sensing Data Control MiddleWare
 지정한 테이블로 데이터가 쌓일 수있도록 처리
 정상코드 외 데이터 진입시 익셉션처리하여 서비스 종료되지 않도록
 센서에서 데이터를 받기전 수동으로 데이터를 가공하여 던져볼수 있는(테스트목적) 방법
+
+
+
+```
 //1. 리눅스에서 Curl 전송 
 curl -i  '{"imei_cd":"456754675467","seq":"1","center_nm":"aaaa","center_cd":"T1","name":"bbb","phone":"12312312"}' -H "Content-Type: application/json" -X POST http://localhost:8123/postfire
 
 //2. 윈도우 환경에서 cmd에서 CURL로 데이터 전송시 
 curl -i  -H "Content-Type: application/json" -d "{\"imei_cd\":\"test\",\"seq\":\"1\",\"center_nm\":\"test\",\"center_cd\":\"S2\",\"name\":\"test\",\"phone\":\"435643564356\"}" -X POST http://localhost:9090/postsms
+```
 프로그램 내부에서 처리하기 힘든 부분을 DB 프로시저로 대신 처리하는 방안
 
 센싱된 데이터를 수집하여 insert 시킬때 해당 테이블에 트리거를 설정하여 다음 동작을 취할 수 있도록 프로세스화 시키는 방법
 
+```
 --트리거 및 펑션 샘플 예시
 1. 테이블 생성
 create table t1(c1 integer, c2 date);
@@ -70,7 +76,7 @@ grant select on all tables in schema "test_public2" to "test_user";
 
 --해당 권한 부여시점 이후에 테이블에 적용될 수 있도록 권한 부여
 ALTER DEFAULT PRIVILEGES IN SCHEMA "test_public2" GRANT select on tables TO "test_user"
-
+```
 
 위의 예시는 Table 및 View에 대한 권한이며, 
 Function 및 Sequence, Tablespace에 대한 권한은 따로 부여해야됨.
