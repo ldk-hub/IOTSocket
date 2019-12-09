@@ -82,3 +82,12 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA "test_public2" GRANT select on tables TO "tes
 Function 및 Sequence, Tablespace에 대한 권한은 따로 부여해야됨.
 
 ※참고URL:  https://www.postgresql.org/docs/10/sql-createrole.html
+
+
+
+센서 개별의 USIM이 내장되어있어 고유번호로 데이터 값을 전달함.
+
+하지만 통신사중계기에서 발신되는 IP값은 고정이 아니기 때문에 서버측에서 센서별로 IP를 지정할 수 없었음. (보안취약)
+
+이러한 센서에서 발신된 정보중 IMEI <<핸드폰에서 사용되는 단말의 고유 번호라보면됨.
+미들웨어 단에서 IMEI 값을 체크하여 서버의 불필요한 접근은 차단해야함.
